@@ -1,0 +1,26 @@
+user""#帳號
+password""#密碼
+time""#搶購時間,立刻啟動xx:xx:xx,監控oo:oo:oo
+id""#商品代碼
+specification""#型號預設0,選單第1個為1以此類推
+num""#商品數量
+add""#加購,選單第1個為1以此類推,格式為空或單個數字或以逗號分隔ex1,2,3(暫時不支援)
+addnum""#加購數量,格式為空或單個數字或以逗號分隔ex1,2,3(暫時不支援)
+free""#贈品,選單第1個為1以此類推,格式為空或單個數字或以逗號分隔ex1,2,3(暫時不支援)
+payWay""#home貨到付款,card信用卡
+cusName""#訂購人名字,信用卡付款為持卡人名字
+cusMobile""#訂購人手機,信用卡付款為持卡人手機
+cusZip""#訂購人郵遞區號,信用卡付款為持卡人信用卡帳單郵遞區號 五碼
+cusAddress""#訂購人地址,信用卡付款為持卡人信用卡帳單地址
+recName""#收件人地址
+recMobile""#收件人手機
+recZip""#收件人郵遞區號 五碼
+recAddress""#收件人地址
+cardNO""#卡號
+cardType""#卡片類別VISA,MASTER,JCB,AE(AE暫時不支援)
+cusBirthday""#持卡人生日
+cusSID""#持卡人身分證字號
+cusGender""#持卡人性別M,F
+cardSecurityNO""#後面驗證碼
+cardExpireDate""#卡片期限格式為202607
+accountMode""#帳號類型,p pchome,g google,a apple後兩個很可能要開啟視窗
