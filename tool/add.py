@@ -72,7 +72,14 @@ class Add2car:
                         "CAX": r.json()["MAC"].encode('utf-8'),
                         "CAXE": r.json()["MACExpire"].encode('utf-8')
                     }
+                    if len(self.config.free) !=0:
+                        for i in self.config.free:
+                            data["G"].append({"TI": i})
+                    if len(self.config.add) !=0:
+                        for i in range(len(self.config.add)):
+                            data["A"].append({"TI": self.config.add[i],"YTQ":int(self.config.addnum[i])})
                     data = "data=" + dict2str(data)
+
                 except Exception as e:
                     logging.info( "add2car step 1 error" )
                     logging.info( e )

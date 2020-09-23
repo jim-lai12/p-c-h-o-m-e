@@ -70,8 +70,10 @@ def dict2str(dic):
             if len(dic[i]) == 0:
                 string += str(dic[i])+","
             elif type(dic[i][0]) == dict:
+                string += "["
                 for j in dic[i]:
                     string += dict2str(j)+","
+                string = string[:-1] + "],"
             else:
                 string += str(dic[i])+","
     string +="}}}}}forreplace"
@@ -151,17 +153,6 @@ def decrypt_aes(encrypted, passphrase):
 
 
 if __name__ == '__main__':
-    data = 'try{jsonp_addcart({"PRODTOTAL":0,"PRODCOUNT":0,"TYPE":"BIGCAR","PRODADD":"0","ISSALEOUT":0});}catch(e){if(window.console){console.log(e);}}'
-    #'try{jsonp_button([{"Seq":21845293,"Id":"DRAD1R-A9009PTP3-000","Price":{"M":0,"P":8800,"Prime":""},"Qty":20,"ButtonType":"ForSale","SaleStatus":1,"isPrimeOnly":0,"SpecialQty":0}]);}catch(e){if(window.console){console.log(e);}}'
-    #'try{jsonp_button([{"Seq":19197500,"Id":"DXAO4V-A9008LS5W-000","Price":{"M":0,"P":8990,"Prime":""},"Qty":20,"ButtonType":"ForSale","SaleStatus":1,"isPrimeOnly":0,"SpecialQty":0},{"Seq":20418680,"Id":"DXAO4V-A9008LS5W-004","Price":{"M":0,"P":8990,"Prime":""},"Qty":0,"ButtonType":"OrderRefill","SaleStatus":0,"isPrimeOnly":0,"SpecialQty":0},{"Seq":19197501,"Id":"DXAO4V-A9008LS5W-001","Price":{"M":0,"P":8990,"Prime":""},"Qty":20,"ButtonType":"ForSale","SaleStatus":1,"isPrimeOnly":0,"SpecialQty":0},{"Seq":19197502,"Id":"DXAO4V-A9008LS5W-002","Price":{"M":0,"P":8990,"Prime":""},"Qty":20,"ButtonType":"ForSale","SaleStatus":1,"isPrimeOnly":0,"SpecialQty":0}]);}catch(e){if(window.console){console.log(e);}}'
-    data = parseJson(data)
-    print data
-    if type(data) == dict:
-        print data.keys()
-    elif type(data) == list:
-        print len(data)
-        for item in data:
-            print item.keys()
-    print type(data["ISSALEOUT"])
+    pass
 
 
