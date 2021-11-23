@@ -3,7 +3,8 @@ import time
 import selenium
 import ssl
 import os
-from cookie import cookieway
+#from cookie import cookieway
+import re
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
@@ -25,27 +26,39 @@ def login(account,password,profilePath = "",proxy = "",userAgent = ""):
 
 
     with driver:
-        driver.get("https://www.whatismyip.com.tw/tw/")
-        time.sleep(100)
-
-
-
-        """
         driver.get("https://accounts.google.com/ServiceLogin")
-        time.sleep(2)  # sleep only used for timing of screenshot
-        driver.find_element_by_xpath('//*[@id="identifierId"]').send_keys("yoto86747")
-        time.sleep(4)
-        driver.find_element_by_xpath('//*[@id="identifierNext"]/div/button/span').click()
-        time.sleep(5)
-        """
+        time.sleep(2)
+        url = driver.current_url
 
+        if re.search('hl=[a-z,A-Z,0-9,-]*', url) != None:
+            url = re.sub('hl=[a-z,A-Z,0-9,-]*', "hl=en&", url, 1)
+        else:
+            url = url + "&hl=en"
+        driver.get(url)
 
+        while re.search("accounts.google.com",url):
 
+            title = driver.find_element_by_xpath('//*[@id="headingText"]/span').text
+            if title == "Sign in":
+                driver.find_element_by_xpath('//*[@id="identifierId"]').send_keys(account)
+                time.sleep(4)
+                driver.find_element_by_xpath('//*[@id="identifierNext"]/div/button/span').click()
+                time.sleep(5)
+            elif title == "Welcome":
+                driver.find_element_by_xpath('//*[@id="password"]/div[1]/div/div[1]/input').send_keys(password)
+                time.sleep(4)
+                driver.find_element_by_xpath('//*[@id="passwordNext"]/div/button/span').click()
+                time.sleep(5)
+
+            else:
+                print("error")
+                time.sleep(600)
 
 
 if __name__ == '__main__':
     ua = "Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 640 XL LTE) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Mobile Safari/537.36 Edge/12.10166"
-    login("","",proxy="192.168.11.81:8090")
+    login("","")
+
 
 
 
