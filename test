@@ -1,0 +1,52 @@
+import undetected_chromedriver.v2 as uc
+import time
+import selenium
+import ssl
+import os
+from cookie import cookieway
+ssl._create_default_https_context = ssl._create_unverified_context
+
+
+
+
+def login(account,password,profilePath = "",proxy = "",userAgent = ""):
+    options = uc.ChromeOptions()
+    if profilePath != "":
+        options.add_argument('--user-data-dir='+profilePath)
+    if userAgent != "":
+        options.add_argument('--user-agent='+userAgent)
+    if proxy != "":
+        options.add_argument('--proxy-server='+proxy)
+    options.add_argument('--no-first-run')
+    options.add_argument('--no-service-autorun')
+    options.add_argument('--password-store=basic')
+    driver = uc.Chrome(options=options)
+
+
+
+    with driver:
+        driver.get("https://www.whatismyip.com.tw/tw/")
+        time.sleep(100)
+
+
+
+        """
+        driver.get("https://accounts.google.com/ServiceLogin")
+        time.sleep(2)  # sleep only used for timing of screenshot
+        driver.find_element_by_xpath('//*[@id="identifierId"]').send_keys("yoto86747")
+        time.sleep(4)
+        driver.find_element_by_xpath('//*[@id="identifierNext"]/div/button/span').click()
+        time.sleep(5)
+        """
+
+
+
+
+
+if __name__ == '__main__':
+    ua = "Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 640 XL LTE) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Mobile Safari/537.36 Edge/12.10166"
+    login("","",proxy="192.168.11.81:8090")
+
+
+
+
